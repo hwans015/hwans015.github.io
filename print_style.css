@@ -1,0 +1,37 @@
+/*@page {
+	size: auto;
+	margin: 0mm;
+}
+*/
+.noprint {
+	color: transparent;
+}
+
+.left.open > #capture > .row > .word{
+	font-size: 32px;
+}
+
+/*button{
+	display: none;
+	color: transparent;
+}
+
+button:hover{
+	display: none;
+	color: transparent;
+}*/
+
+.left.open .print{
+	color: transparent;
+	display: none;
+}
+
+.left.open .goback{
+	color: transparent;
+	display: none;
+}
+
+.left.open .download{
+	color: transparent;
+	display: none;
+}
