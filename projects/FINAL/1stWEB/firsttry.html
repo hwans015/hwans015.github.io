@@ -1,0 +1,50 @@
+<html>
+<head>
+</head>
+<body>
+
+<select id=dropdown1></select>
+<select id=dropdown2></select>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+var url ="https://github.com/hwans015/CoreInteractionLab/blob/master/poststamps.json";
+	
+
+$.getJSON(url, function(data){
+	console.log(data);
+	// console.log(Object.keys(data));
+	var keys = Object.keys(data);
+	for (var i = 0; i<keys.length; i=i+1){
+		 var o = document.createElement("option");
+		 o.textContent = keys[i];
+		 o.value = keys[i];
+		 document.getElementById("dropdown1").appendChild(o);
+	}
+
+	document.getElementById("dropdown1").onchange = function(){
+		var key = document.getElementById("dropdown1").value;
+		var newList = data[key];
+		// console.log(newList);
+		for (var i = 0; i<newList.length; i=i+1){
+			 var o = document.createElement("option");
+			 o.textContent = newList[i];
+			 o.value = newList[i];
+			 document.getElementById("dropdown2").appendChild(o);
+		}
+	}
+});
+
+document.getElementById("dropdown2").onchange = function(e){
+
+	var string1 = document.getElementById("dropdown1").value.replace(/\s+/g, '+');
+	var string2 = document.getElementById("dropdown2").value.replace(/\s+/g, '+');
+
+
+
+
+</script>
+
+</body>
+</html>

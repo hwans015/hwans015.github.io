@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CREATE OWN TYPE</title>
+  <link rel='stylesheet' href='style.css' type='text/css'>
+  <link rel='stylesheet' href='print_style.css' type='text/css' media='print'>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="dom-to-image.js"></script>
+</head>
+
+<body>
+  <div class="header"> Drag types to this area</div>
+  <div class="wrapper">
+    <div class="left">
+     <!--  <div class="goback noprint" onclick="goBack()">go back</div> -->
+
+      <div id="capture" class="container">
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+        <div class="row" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)"></div>
+      </div>
+      <button class="goback noprint" onclick="goBack()">Back</button>
+      <button class="print noprint" onclick="Print()">Print</button>
+      <button class="download noprint" onclick="download()">Save</button>
+
+    </div>
+    <div class="right">
+      <div class="word-list" ondragenter="return enter(event)" ondragover="return over(event)" ondrop="return drop(event)">
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">JIKJI</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">IS</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">THE</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">OLDEST</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">BOOK</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">PRINTED</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">WITH</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">MOVEABLE</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">METAL</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">TYPE</span>
+        <span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">.</span>
+      </div>
+      <div class="input-form">
+        <div class="input-wrapper">
+          <input id="text" type="text" placeholder="TYPE OWN WORD">
+          <button "onclick="addWord()">ADD</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button onclick="downloadImage()" id="nemo">Show</button>
+  <script>
+
+  function downloadImage(){
+     $('.left').addClass('open');
+     $('.wrapper').addClass('open');
+  }
+
+  function goBack(){
+    $('.left').removeClass('open');
+    $('.wrapper').removeClass('open');
+  }
+ 
+  function Print() {
+    window.print();
+  }
+
+  function download2(){
+
+        var divToPrint = document.getElementById('capture').outerHTML;
+
+        var frameDoc = window.open('', '_blank', 'width=600px,height=630px');
+        frameDoc.document.write('<html><head><title>DOWNLOAD</title>');
+        frameDoc.document.write('<link href="print.css" rel="stylesheet" type="text/css" />');
+        frameDoc.document.write('</head><body onload="toCanvas();">');
+        frameDoc.document.write('\x3Cscript src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js">\x3C/script>');
+        frameDoc.document.write('\x3Cscript src="dom-to-image.js">\x3C/script>');
+
+        frameDoc.document.write(divToPrint);
+        frameDoc.document.write('\x3Cscript>');
+        frameDoc.document.write('function toCanvas(){var node = document.getElementById("capture");\r\ndomtoimage.toPng(node).then(function (dataUrl) {\r\nvar img = new Image();\r\nimg.src = dataUrl;console.log(img.src);\r\nimg.setAttribute("id","img");\r\n\r\nvar a = document.createElement("a");\r\na.href = img.src;\r\na.download = "image.png";\r\na.appendChild(img);\r\ndocument.body.appendChild(a);}).catch(function (error) {\r\nconsole.error("oops, something went wrong!", error);});\r\n}');
+        frameDoc.document.write('\x3C/script>');
+        frameDoc.document.write('</body></html>');
+        frameDoc.document.close();
+  }
+  
+  function download(){
+    var node = document.getElementById("capture");
+    domtoimage.toPng(node).then(function (dataUrl) {
+    var img = new Image();
+    img.src = dataUrl;
+    console.log(img.src);
+    img.setAttribute("id","img");
+    var a = document.createElement("a");
+    a.href = img.src;
+    a.download = "image.png";
+    a.click();
+    });
+  }
+
+  function addWord() {
+    $text = document.getElementById("text").value;
+
+    $( ".word-list" ).append( '<span class="word" draggable="true" ondragstart="return start(event)" ondragend="return end(event)">'+ $text +'</span>');
+  }
+  var element;
+  var start = function(e) {
+    element = e.srcElement;
+    e.dataTransfer.effectAllowed = 'move';
+    return true;
+  }
+
+  var enter = function(e) {
+    return true;
+  }
+  var over = function(e) {
+    return false;
+  }
+
+  var drop = function(e) {
+    e.target.appendChild(element);
+    e.stopPropagation();
+    return false;
+  }
+
+  var end = function(e) {
+    e.dataTransfer.clearData('iconId');
+    return true;
+  }
+  </script>
+</body>
+</html>

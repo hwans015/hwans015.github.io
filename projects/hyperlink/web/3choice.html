@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<title></title>
+	<style>
+		html,body{
+			background-color: black;
+		}
+
+		div{
+			display: inline-block;
+			vertical-align: bottom;
+		}
+		img{
+			max-width: 50%;
+			width: auto;
+			height: auto;
+		}
+		img:hover{
+			opacity: 0.5;
+		}
+	</style>
+</head>
+<body>
+<div>
+	<div>
+		<a href="f3.html"><img id="drag-scarecrow" src="illustration/choice3_09.png"></a>
+	</div>
+	<div>
+		<a href="s3.html"><img id="drag-lion" src="illustration/choice3_03__03.png"></a>
+	</div>
+	<div>
+		<a href="f2.html"><img src="illustration/choice3_06.png"></a>
+	</div>
+	<div>
+		<a><img src="illustration/4choice_06.png"></a>
+	</div>
+
+</div>
+
+<script>
+  $( function() {
+    $( "#drag-scarecrow" ).draggable();
+    $( "#drag-lion" ).draggable();
+  } );
+</script>
+
+
+</body>
+</html>

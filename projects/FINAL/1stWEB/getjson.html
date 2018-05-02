@@ -1,0 +1,40 @@
+<html>
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script>
+	$(function(){
+		var stamp = [];
+		var url = ["https://raw.githubusercontent.com/hwans015/CoreInteractionLab/master/FINAL/poststamps.json"];
+
+		$.getJSON(url, function(data){
+			$.each(data.stamp, function(i, f){
+				var tblRow = "<tr>" + "<td>" + f.title + "</td>" + "<td>" + f.date + "</td>" + "<td>" + f.designer + "</td>" + "<td>" + f.images + "</td>" + "</tr>"
+					$(tblRow).appendTo("#stampdata tbody");
+				});
+		});
+});
+</script>
+</head>
+<body>
+
+<div class="wrapper">
+<div class="profile">
+	<table id="stampdata" border="2">
+<thead>
+	<th>title</th>
+	<th>date</th>
+	<th>desinger</th>
+	<th>images</th>
+</thead>		
+	<tbody>
+		
+	</tbody>
+	</table>
+</div>
+</div>
+
+</body>
+</html>
