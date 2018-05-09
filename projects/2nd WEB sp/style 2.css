@@ -22,14 +22,14 @@
 		color: #573737;
 		font-weight: bold;
 /*		padding-left: 8%;*/
-		padding-top: 31%;
+		padding-top: 18%;
 		align-items: center;
 		text-align: center;
 
 	}
 	#page_3 .drop{
 		padding: 20%;
-		padding-top: 60%;
+		padding-top: 46%;
 /*		overflow-y: scroll;*/
 	}
 	#page_3 .custom-select{
@@ -99,7 +99,7 @@
 		font-weight: bold;
 		color: #573737;
 		text-align: center;
-		padding-top: 30%;
+		padding-top: 16%;
 		padding-bottom: 11%;
 	}
 
