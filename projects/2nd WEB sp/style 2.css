@@ -1,9 +1,10 @@
 /* for mobile */
 
-	body {
+	html,body {
 	  margin: 0;
 	  padding: 0;
-	  overflow-x: hidden;
+	  overflow: hidden;
+	  height: 100%;
 	}
 
 	.page {
