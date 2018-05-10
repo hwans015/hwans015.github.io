@@ -29,19 +29,19 @@
 	}
 	#page_3 .drop-container{
 		overflow:hidden;
-		height:40%;
-		padding-top: 20%;
+		height:62%;
+/*		padding-top: 20%;*/
 	}
 	#page_3 .drop{
 		padding: 20%;
 		padding-top: 46%;
-		overflow-y: scroll;
+/*		overflow-y: scroll;*/
 	}
 	#page_3 .custom-select{
 		position: relative;
 		font-family: serif;
 		font-size: 3em;
-		/*overflow-y: scroll;*/
+		overflow-y: scroll;
 		margin: 0;
 		padding: 3%;
 	}
