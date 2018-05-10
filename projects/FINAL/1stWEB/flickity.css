@@ -46,26 +46,30 @@ https://flickity.metafizzy.co
 
 .flickity-button {
   position: absolute;
-  background: hsla(0, 0%, 100%, 0.75);
+/*  background: hsla(0, 0%, 100%, 0.75)*/;
   border: none;
   color: #333;
+  background-color: transparent;
 }
 
 .flickity-button:hover {
-  background: white;
+  background: transparent;
   cursor: pointer;
 }
 
 .flickity-button:focus {
   outline: none;
-  box-shadow: 0 0 0 5px #19F;
+   background-color: transparent;
+/*  box-shadow: 0 0 0 5px #19F;*/
 }
 
 .flickity-button:active {
   opacity: 0.6;
+   background-color: transparent;
 }
 
 .flickity-button:disabled {
+   background-color: transparent;
   opacity: 0.3;
   cursor: auto;
   /* prevent disabled button from capturing pointer up event. #716 */
@@ -73,6 +77,7 @@ https://flickity.metafizzy.co
 }
 
 .flickity-button-icon {
+   background-color: transparent;
   fill: #333;
 }
 
@@ -87,16 +92,32 @@ https://flickity.metafizzy.co
   transform: translateY(-50%);
 }
 
-.flickity-prev-next-button.previous { left: 10px; }
-.flickity-prev-next-button.next { right: 10px; }
+.flickity-prev-next-button.previous { left: 30px; }
+.flickity-prev-next-button.next { right: 30px; }
 /* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;
-  right: 10px;
+  right: 30px;
 }
 .flickity-rtl .flickity-prev-next-button.next {
   right: auto;
-  left: 10px;
+  left: 30px;
+}
+
+
+#image_carousel .flickity-prev-next-button.previous { left: 380px; }
+
+#image_carousel .flickity-prev-next-button.next { right: 380px; }
+/* right to left */
+
+#image_carousel .flickity-rtl .flickity-prev-next-button.previous {
+  left: auto;
+  right: 380px;
+}
+
+#image_carousel .flickity-rtl .flickity-prev-next-button.next {
+  right: auto;
+  left: 380px;
 }
 
 .flickity-prev-next-button .flickity-button-icon {
@@ -109,10 +130,33 @@ https://flickity.metafizzy.co
 
 /* ---- page dots ---- */
 
+
+#category .flickity-page-dots {
+  bottom: -25px;
+}
+
+#category .flickity-rtl .flickity-page-dots { direction: rtl; }
+
+#category .flickity-page-dots .dot {
+  display: inline-block;
+  height: 4px;
+  width: 40px
+  margin: 0;
+  background: transparent;
+  border-radius: 0;
+  opacity: 0.25;
+  cursor: pointer;
+  color: transparent;
+}
+
+#category .flickity-page-dots .dot.is-selected {
+  opacity: 1;
+}
+
 .flickity-page-dots {
   position: absolute;
   width: 100%;
-  bottom: -25px;
+  bottom: -20px;
   padding: 0;
   margin: 0;
   list-style: none;

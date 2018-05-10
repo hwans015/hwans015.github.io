@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="flickity.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script:400,700|Inconsolata" rel="stylesheet">
+
+    <style>
+    body{
+      padding-top: 2%;
+    }
+
+      .main_carousel {
+        width: 300px;
+        height: 100px;
+        margin: auto;
+        justify-content: center;
+      }
+      #image_carousel .flickity-viewport{
+        height:510px !important;
+      }
+      .image_carousel {
+        margin-top:24px;
+        justify-content: center;
+        width: 100%;
+        height: 500px;
+      }
+      .carousel-cell-image {
+        display:block;
+        width: auto;
+        height:80%;
+      }
+      .carousel_cell {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .carousel_cell > img{
+        position: relative;
+      }
+
+      .carousel_cell > p{
+        position: relative;
+        width: 100%;
+      }
+      
+      .caption {
+        background: transparent;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+        height: 90px;
+        font-family: 'Inconsolata', monospace;
+      }
+
+      span{
+        font-family: 'Oleo Script', cursive;
+        font-size: 40px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="main_carousel" id="category">
+      <div id='0' class="carousel_cell">
+        <span>RAT</span>
+      </div>
+      <div id='1' class="carousel_cell">
+        <span>OX</span>
+      </div>
+      <div id='2' class="carousel_cell">
+        <span>TIGER</span>
+      </div>
+      <div id='3' class="carousel_cell">
+        <span>RABBIT</span>
+      </div>
+      <div id='4' class="carousel_cell">
+        <span>DRAGON</span>
+      </div>
+      <div id='5' class="carousel_cell">
+        <span>SNAKE</span>
+      </div>
+      <div id='6' class="carousel_cell">
+        <span>HORSE</span>
+      </div>
+      <div id='7' class="carousel_cell">
+        <span>SHEEP</span>
+      </div>
+      <div id='8' class="carousel_cell">
+        <span>MONKEY</span>
+      </div>
+      <div id='9' class="carousel_cell">
+        <span>ROOSTER</span>
+      </div>
+      <div id='10' class="carousel_cell">
+        <span>DOG</span>
+      </div>
+      <div id='11' class="carousel_cell">
+        <span>PIG</span>
+      </div>
+    </div>
+
+      <div id='image_carousel' data-flickity='{ "imagesLoaded": true }' class="image_carousel">
+        <div class="carousel_cell">
+          <img class="carousel-cell-image" src="./images/2007.jpg" alt="dkdk">
+          <p class="caption">Rat in Snow <br> (11.30.2007) <br> Eun-Kyung Park </p>
+        </div>
+        <div class="carousel_cell">
+          <img class="carousel-cell-image" src="./images/1995.jpg" alt="">
+           <p class="caption">Snowman and Rat <br> (12.01.1995) <br> In-hae Won </p>
+        </div>
+        <div class="carousel_cell">
+          <img class="carousel-cell-image" src="./images/1983.jpg" alt="">
+           <p class="caption">Zodiac Sign (Rat) <br> (12.01.1983) <br> Sung-shil Kim </p>
+        </div>
+      </div>
+
+<!--       <p class="caption">&nbsp;</p> -->
+
+  <script src='jquery.min.js'></script>
+  <script src="flickity.pkgd.min.js"></script>
+  <script src='main.js'></script>
+  <script>
+
+    // var my_path;
+
+    // function getUrlVars() {
+    //   var variables = {};
+
+    //   var path = window.location.href;
+    //   var animal_name = path.split("#")[1];
+
+    //   console.log("animal_name", animal_name)
+
+    //   // window.location.hash = path;
+
+    //   variables.path = path;
+    //   variables.animal_name = animal_name;
+    //   //variables.the_animal_name = 
+
+    //   my_path = variables;
+
+    //   console.log(my_path);
+
+
+    // }
+
+    // getUrlVars();
+
+    // console.log("variables",my_path)
+
+
+
+    // console.log("testing: ", my_path.animal_name)
+
+    // var targetCell = my_path.animal_name // slide you want to go to
+
+    // $carousel.flickity( 'select', targetCell )
+
+    /* 
+
+    The carousel needs to be blank at first 
+
+    getUrlVars gives you the right name, like "Rat", specifically through my_path.animal_name
+
+    Then my_path.animal_name needs to be in the function that fetches data from JSON
+
+    Use it to get the right animal you want, then load the right content in the carousel
+
+    */
+
+    var $carousel = $('#image_carousel').flickity({
+        cellAlign: 'left',
+        contain: true,
+        wrapAround: true,
+    });
+
+
+    var urls = "https://raw.githubusercontent.com/hwans015/CoreInteractionLab/master/FINAL/poststamps.json";
+
+    var names = ["Rat", "Ox", "Tiger", "Rabbit", "Dragon", "Snake", "Horse", "Sheep", "Monkey", "Rooster", "Dog", "Pig" ];
+
+    var animals = [];
+    var currentAnimals = [];
+
+    function getData(){
+      $.getJSON(urls, function(data){
+        animals = data;
+        });
+    }
+
+    getData();
+
+    function getAnimal(index){
+      name = names[index];
+      //currentAnimals = [];
+      currentAnimals = animals[name];
+      console.log(currentAnimals[0]);
+      addAnimalImage();
+    }
+
+    // function oneAnimal(index){
+    //   name = names[index];
+    //   currentAnimals = animals[name];
+    //   console.log(currentAnimals[0]);
+    //   addAnimalImage();
+    // }
+
+    function addAnimalImage(){
+      var numberOfAnimals = currentAnimals.length;
+      var currentCarousel = $(".flickity-slider")[1];
+      console.log(currentCarousel);
+
+      for(var i=0; i<currentCarousel.childNodes.length+1; i++){
+        $carousel.flickity('remove',currentCarousel.childNodes[0]);
+      }
+
+      $carousel.flickity('remove',currentCarousel.childNodes[0]);
+
+      var element = "";
+
+      for(var i=0; i<numberOfAnimals; i++){
+        var selectedAnimal = currentAnimals[i];
+        var imageName = selectedAnimal.images.split("/")[0];
+         // 이미지 이름 가져오기
+        var imageTitle = selectedAnimal.title; 
+        var designer = selectedAnimal.designer;
+        var date = selectedAnimal.date;
+
+        console.log(imageTitle);
+
+        element = $("<div class=\"carousel_cell\">" +"<img class=\"carousel-cell-image\" src=\"./images/" + imageName + "\"/><p class='caption'>" + imageTitle + " <br> " + "(" + date + ")" +" <br> "+ designer+ "</p></div>");
+        
+        $carousel.flickity('append',element);
+       
+
+      }
+
+    
+
+    var $caption = $('.caption');
+      // Flickity instance
+    var flkty = $carousel.data('flickity');
+
+    $carousel.on( 'select.flickity', function() {
+      // set image caption using img's alt
+      $caption.text( flkty.selectedElement.alt )
+    });
+    }
+
+  </script>
+  </body>
+</html>
