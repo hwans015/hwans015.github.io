@@ -148,24 +148,24 @@
 	    window.print();
 	  }
 
-	function download2(){
+	// function download2(){
 
-        var divToPrint = document.getElementById('post').outerHTML;
+ //        var divToPrint = document.getElementById('post').outerHTML;
 
-        var frameDoc = window.open('', '_blank', 'width=600px,height=630px');
-        frameDoc.document.write('<html><head><title>DOWNLOAD</title>');
-        frameDoc.document.write('<link href="print.css" rel="stylesheet" type="text/css" />');
-        frameDoc.document.write('</head><body onload="toCanvas();">');
-        frameDoc.document.write('\x3Cscript src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js">\x3C/script>');
-        frameDoc.document.write('\x3Cscript src="dom-to-image.js">\x3C/script>');
+ //        var frameDoc = window.open('', '_blank', 'width=600px,height=630px');
+ //        frameDoc.document.write('<html><head><title>DOWNLOAD</title>');
+ //        frameDoc.document.write('<link href="print.css" rel="stylesheet" type="text/css" />');
+ //        frameDoc.document.write('</head><body onload="toCanvas();">');
+ //        frameDoc.document.write('\x3Cscript src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js">\x3C/script>');
+ //        frameDoc.document.write('\x3Cscript src="dom-to-image.js">\x3C/script>');
 
-        frameDoc.document.write(divToPrint);
-        frameDoc.document.write('\x3Cscript>');
-        frameDoc.document.write('function toCanvas(){var node = document.getElementById("capture");\r\ndomtoimage.toPng(node).then(function (dataUrl) {\r\nvar img = new Image();\r\nimg.src = dataUrl;console.log(img.src);\r\nimg.setAttribute("id","img");\r\n\r\nvar a = document.createElement("a");\r\na.href = img.src;\r\na.download = "image.png";\r\na.appendChild(img);\r\ndocument.body.appendChild(a);}).catch(function (error) {\r\nconsole.error("oops, something went wrong!", error);});\r\n}');
-        frameDoc.document.write('\x3C/script>');
-        frameDoc.document.write('</body></html>');
-        frameDoc.document.close();
-  }
+ //        frameDoc.document.write(divToPrint);
+ //        frameDoc.document.write('\x3Cscript>');
+ //        frameDoc.document.write('function toCanvas(){var node = document.getElementById("capture");\r\ndomtoimage.toPng(node).then(function (dataUrl) {\r\nvar img = new Image();\r\nimg.src = dataUrl;console.log(img.src);\r\nimg.setAttribute("id","img");\r\n\r\nvar a = document.createElement("a");\r\na.href = img.src;\r\na.download = "image.png";\r\na.appendChild(img);\r\ndocument.body.appendChild(a);}).catch(function (error) {\r\nconsole.error("oops, something went wrong!", error);});\r\n}');
+ //        frameDoc.document.write('\x3C/script>');
+ //        frameDoc.document.write('</body></html>');
+ //        frameDoc.document.close();
+ //  }
     
 	function download(){
 	    var node = document.getElementById("post");
