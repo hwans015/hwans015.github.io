@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="dom-to-image.js"></script>
+
+<title>postcard</title>
+
+<style>
+
+	body {
+	  margin: 0;
+	  padding: 0;
+	/*  overflow: hidden;*/
+	}
+	.page {
+	  width: 100vw;
+	  height: 100vh;
+	  background-color: #FBDBD7;
+	}
+
+	select {
+
+	  /* styling */
+	  background-color: white;
+	  border: thin solid blue;
+	  border-radius: 4px;
+	  display: inline-block;
+	  font: inherit;
+	  line-height: 1.5em;
+	  padding: 0.5em 3.5em 0.5em 1em;
+
+	  /* reset */
+
+	  margin: 0;      
+	  -webkit-box-sizing: border-box;
+	  -moz-box-sizing: border-box;
+	  box-sizing: border-box;
+	  -webkit-appearance: none;
+	  -moz-appearance: none;
+	}	
+
+	select.minimal {
+	  background-image:
+	    linear-gradient(45deg, transparent 50%, gray 50%),
+	    linear-gradient(135deg, gray 50%, transparent 50%),
+	    linear-gradient(to right, #ccc, #ccc);
+	  background-position:
+	    calc(100% - 20px) calc(1em + 2px),
+	    calc(100% - 15px) calc(1em + 2px),
+	    calc(100% - 2.5em) 0.5em;
+	  background-size:
+	    5px 5px,
+	    5px 5px,
+	    1px 1.5em;
+	  background-repeat: no-repeat;
+	}
+
+	select.minimal:focus {
+	  background-image:
+	    linear-gradient(45deg, green 50%, transparent 50%),
+	    linear-gradient(135deg, transparent 50%, green 50%),
+	    linear-gradient(to right, #ccc, #ccc);
+	  background-position:
+	    calc(100% - 15px) 1em,
+	    calc(100% - 20px) 1em,
+	    calc(100% - 2.5em) 0.5em;
+	  background-size:
+	    5px 5px,
+	    5px 5px,
+	    1px 1.5em;
+	  background-repeat: no-repeat;
+	  border-color: green;
+	  outline: 0;
+	}
+
+
+	select:-moz-focusring {
+	  color: transparent;
+	  text-shadow: 0 0 0 #000;
+	}
+
+	h1 {
+	  color: white;
+	  line-height: 120%;
+	  margin: 0 auto 2rem auto;
+	  max-width: 30rem;
+	}
+
+
+</style>	
+</head>
+<body>
+<div id='page_1' class='page'>
+	<div class="question">CHOOSE ANIMAL</div>
+	<div>
+		<select class="minimal">
+		  <option>choose animal</option>
+		  <option>rat</option>
+		  <option>ox</option>
+		  <option>tiger</option>
+		  <option>rabbit</option>
+		  <option>dragon</option>
+		  <option>snake</option>
+		  <option>horse</option>
+		  <option>sheep</option>
+		  <option>monkey</option>
+		  <option>rooster</option>
+		  <option>dog</option>
+		  <option>pig</option>
+		</select>
+	</div>
+
+	<a href="postcard.html#page_2"><button>NEXT</button></a>
+
+</div>
+
+<div id='page_2' class='page'>
+	<textarea id="text" type="text" placeholder="write a message to your friend"></textarea>
+	<button>NEXT</button>
+</div>
+
+<div id='page_3' class='page'>
+	<div id="post">
+            <div id='image'>
+            	<img id="stamp" src="">
+            </div>
+            <div class="zip">
+	          <!--   <textarea cols="10" rows="7"></textarea>
+	            <textarea cols="10" rows="7"></textarea>
+	            <textarea cols="10" rows="7"></textarea>
+	            <textarea cols="10" rows="7"></textarea>
+	            <textarea cols="10" rows="7"></textarea> -->
+            </div>
+            <div class="message">
+            	
+            </div>
+            <button class="print" onclick="Print()">PRINT</button>
+            <button class="download" onclick="download()">SAVE</button>
+      </div>
+
+</div>
+
+<script>
+	function Print() {
+	    window.print();
+	  }
+
+	function download2(){
+
+        var divToPrint = document.getElementById('post').outerHTML;
+
+        var frameDoc = window.open('', '_blank', 'width=600px,height=630px');
+        frameDoc.document.write('<html><head><title>DOWNLOAD</title>');
+        frameDoc.document.write('<link href="print.css" rel="stylesheet" type="text/css" />');
+        frameDoc.document.write('</head><body onload="toCanvas();">');
+        frameDoc.document.write('\x3Cscript src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js">\x3C/script>');
+        frameDoc.document.write('\x3Cscript src="dom-to-image.js">\x3C/script>');
+
+        frameDoc.document.write(divToPrint);
+        frameDoc.document.write('\x3Cscript>');
+        frameDoc.document.write('function toCanvas(){var node = document.getElementById("capture");\r\ndomtoimage.toPng(node).then(function (dataUrl) {\r\nvar img = new Image();\r\nimg.src = dataUrl;console.log(img.src);\r\nimg.setAttribute("id","img");\r\n\r\nvar a = document.createElement("a");\r\na.href = img.src;\r\na.download = "image.png";\r\na.appendChild(img);\r\ndocument.body.appendChild(a);}).catch(function (error) {\r\nconsole.error("oops, something went wrong!", error);});\r\n}');
+        frameDoc.document.write('\x3C/script>');
+        frameDoc.document.write('</body></html>');
+        frameDoc.document.close();
+  }
+    
+	function download(){
+	    var node = document.getElementById("post");
+	    domtoimage.toPng(node).then(function (dataUrl) {
+	    var img = new Image();
+	    img.src = dataUrl;
+	    console.log(img.src);
+	    img.setAttribute("id","img");
+	    var a = document.createElement("a");
+	    a.href = img.src;
+	    a.download = "image.png";
+	    a.click();
+	    });
+	  }
+</script>
+</body>
+</html>
