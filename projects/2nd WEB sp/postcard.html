@@ -144,6 +144,12 @@
 </div>
 
 <script>
+
+	$('#message-submit').on('click', function(){
+	var message = $('#text').val();
+	$(".message").text(message);
+})
+
 	function Print() {
 	    window.print();
 	  }
