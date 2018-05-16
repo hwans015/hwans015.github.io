@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="dom-to-image.js"></script>
+	<link rel="stylesheet" href="young.css">
+	<link rel="stylesheet" href="pstyle.css">
+	<link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
+
+
+<title>postcard</title>
+
+<style>
+	#page_3 #rewrite{
+		margin-top: 2%;
+		margin-left: 10%;
+	    background-color: transparent;
+	    border-style: none;
+	    width: 10%;
+	}
+
+	#page_3 .print{
+		margin-top: 2%;
+		margin-left: 12%;
+	    background-color: transparent;
+	    border-style: none;
+	    width: 10%;
+	}
+
+
+	#page_3 #home{
+		margin-top: 2%;
+		margin-left: 10%;
+	    background-color: transparent;
+	    border-style: none;
+	    width: 10%;
+	}
+
+</style>
+</head>
+<body>
+<div id='page_1' class='page noprint'>
+	<div class="wrapper">
+
+	<div class="question">CHOOSE ANIMAL</div>
+
+	<div class="selection">
+		<select class="minimal" id="animal_select">
+		  <option value="animal">animal</option>
+		  <option value="rat">rat</option>
+		  <option value="ox">ox</option>
+		  <option value="tiger">tiger</option>
+		  <option value="rabbit">rabbit</option>
+		  <option value="dragon">dragon</option>
+		  <option value="snake">snake</option>
+		  <option value="horse">horse</option>
+		  <option value="sheep">sheep</option>
+		  <option value="monkey">monkey</option>
+		  <option value="rooster">rooster</option>
+		  <option value="dog">dog</option>
+		  <option value="pig">pig</option>
+		</select>
+	</div>
+
+	<button onclick="randomImg()"><a href="postcard.html#page_2"><img src="arrow.png"></a></button>
+
+	</div>
+
+</div>
+
+<div id='page_2' class='page noprint'>
+
+	<div class="wrapper">
+
+	<div class="addressbox">
+	<p>Address:</p>	
+	<textarea id="ad" type="text" placeholder="write the address and name" cols="50" rows="4"></textarea>
+	</div>
+
+	<div class="messagebox">
+	<p>Message:</p>
+	<textarea id="text" type="text" placeholder="write a message to your friend" cols="50" rows="10"></textarea>
+	</div>	
+
+	<a href="postcard.html#page_3"><button id='message-submit'><img src="arrow.png"></button></a>
+
+	</div>
+
+</div>
+
+<div id='page_3' class='page'>
+
+	<div class="wrapper">
+	<div id= back>	
+		<div id="post">
+	            <div class="message">
+	            <p class=textap></p>	
+	            </div>
+
+	            <div id="right">
+		            <div id='image'>
+		            	<img id="stamp" src="">
+		            </div>
+		            <div class="zip">
+			       	<p class="adap"></p>
+		            </div>
+	            </div>
+	    </div>
+	</div>    
+     <button class="print noprint"><a href="mailto:?subject=Happy New Year&amp;body=Here is my postcard."><img src="mail.png"></a></button>
+
+    <button class="download noprint" onclick="download()"><img src="down.png"></button>
+    <button id="rewrite"><a href="postcard.html#page_1"><img src="rf.png"></a></button>
+    <button id="home"><a href="menu.html"><img src="home.svg"></a></button>
+	</div>	
+
+</div>
+
+<script>
+
+function randomImg(){
+	var my_zodiac = document.getElementById("animal_select").value;
+    var randomNumber = Math.floor(Math.random() * 3) + 1;
+    var imgName = randomNumber + ".png";
+    console.log("images" + "/" + imgName );
+    document.getElementById("stamp").src= "images" + "/" + my_zodiac + "/"+ imgName ;
+ }
+
+/* APPEND MESSAGE WHEN USER CLICKS SUBMIT */
+$('#message-submit').on('click', function(){
+	var message = $('#text').val();
+	$(".textap").text(message);
+	var ad = $('#ad').val();
+	$(".adap").text(ad);
+})
+
+
+	// function Print() {
+	//     window.print();
+	//   }
+
+ //    var doc = new jsPDF();
+
+	// function download(){
+	// 	doc.fromHTML($('#post').html(), 15, 15, {
+	//         'width': 170
+	//             // 'elementHandlers': specialElementHandlers
+	//     });
+	//     doc.save('sample-file.pdf');
+
+	//   }
+
+	function download(){
+    var node = document.getElementById("back");
+    domtoimage.toPng(node).then(function (dataUrl){
+    var img = new Image();
+    img.src = dataUrl;
+    console.log(img.src);
+    img.setAttribute("id","img");
+    var a = document.createElement("a");
+    a.href = img.src;
+    a.download = "postcard.png";
+    a.click();
+    });
+  }
+
+</script>
+</body>
+</html>
